@@ -3,16 +3,17 @@ Contains the Ds9Display class.
 """
 
 import os
-import time
 import shutil
-import tempfile
-import numpy
 import subprocess
+import tempfile
+import time
 from typing import List
 
+import numpy
+
 import azcam
-from azcam.functions.fits import pyfits
 from azcam.displays.display import Display
+from azcam.functions.fits import pyfits
 
 
 class Ds9Display(Display):
