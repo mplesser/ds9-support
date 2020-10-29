@@ -32,8 +32,8 @@ Usage Example:
     rois = azcam.api.display.get_rois(2, 'detector')  
     azcam.display.api.display(test.fits')
 
-https://github.com/mplesser/azcam-ds9/docs/index.html
-
+## Code Documentation
+https://mplesser.github.io/azcam-ds9/
 
 ## Notes
 It may be helpful to remove all associations of .fits files in the registry and then only
