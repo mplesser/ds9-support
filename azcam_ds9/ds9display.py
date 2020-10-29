@@ -9,9 +9,8 @@ import tempfile
 import time
 from typing import List
 
-import numpy
-
 import azcam
+import numpy
 from azcam.display import Display
 from azcam.functions.fits import pyfits
 
@@ -70,17 +69,36 @@ class Ds9Display(Display):
             self.xpaaccess_app = "xpaaccess"
             self.xpans = "xpans"
         else:
-            self.ds9_app = f'"{self.root}ds9.exe"'
-            self.xpaset_app = f'"{self.root}xpaset.exe"'
-            self.xpaget_app = f'"{self.root}xpaget.exe"'
-            self.xpaaccess_app = f'"{self.root}xpaaccess.exe"'
-            self.xpans = f"{self.root}xpans.exe"
+            self.ds9_app = os.path.join(self.root, "ds9.exe")
+            self.ds9_app = os.path.abspath(self.ds9_app)
+            self.xpaset_app = os.path.join(self.root, "xpaset.exe")
+            self.xpaset_app = os.path.abspath(self.xpaset_app)
+            self.xpaget_app = os.path.join(self.root, "xpaget.exe")
+            self.xpaget_app = os.path.abspath(self.xpaget_app)
+            self.xpaaccess_app = os.path.join(self.root, "xpaaccess.exe")
+            self.xpaaccess_app = os.path.abspath(self.xpaaccess_app)
+            self.xpans = os.path.join(self.root, "xpans.exe")
+            self.xpans = os.path.abspath(self.xpans)
 
         if not self.enabled:
             azcam.AzcamWarning("Display is not enabled")
             return
 
         self.set_display(self.default_display)
+
+        return
+
+    def start(self, flag=0):
+        """
+        Starts a display process.
+        """
+
+        self.initialize()
+
+        cmd = [self.ds9_app]
+        p = subprocess.Popen(
+            cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=False
+        )
 
         return
 
@@ -100,36 +118,18 @@ class Ds9Display(Display):
 
         resp = []
 
-        # cmd = '\"'+self.xpaaccess_app+'\" -v ds9 '
-        # output = os.popen(cmd).readlines()
-
-        cmd = os.path.abspath("c:/ds9/xpaaccess.exe")
-        # cmd = '\"'+self.xpaaccess_app+'\" -v ds9 '
-        # args=['-v','ds9']
-        # p=subprocess.Popen([cmd,args],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        cmd = self.xpaaccess_app
         p = subprocess.Popen(
-            [cmd, "-v", "ds9"], stdout=subprocess.PIPE, stderr=subprocess.PIPE
+            [self.xpaaccess_app, "-v", "ds9"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
         )
-        # output = os.popen(cmd).readlines()
-        # 1output=p.stdout.readlines()
         output, errors = p.communicate()
         output = output.decode("utf-8")
         if output == "":
             return []
         output = output.strip()
         resp = output.split("\n")
-
-        """
-        if len(output) > 0:
-            for i,item in enumerate(output):
-                addr = item.split(':')
-                itemHost = addr[0]
-                itemPort = addr[1].split('\n')[0]
-                if itemPort.endswith('\n'):
-                    itemPort=itemPort[:-1]
-
-                resp.append(itemHost + ':' + itemPort)
-        """
 
         return resp
 
@@ -801,3 +801,9 @@ class Ds9Display(Display):
         # reply=subprocess.Popen(cmd)
 
         return reply
+
+
+# debug
+if 0:
+    display = Ds9Display()
+    display.start()
