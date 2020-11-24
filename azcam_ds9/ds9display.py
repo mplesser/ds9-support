@@ -12,7 +12,7 @@ from typing import List
 import azcam
 import numpy
 from azcam.display import Display
-from azcam.functions.fits import pyfits
+from azcam.fits import pyfits
 
 
 class Ds9Display(Display):
