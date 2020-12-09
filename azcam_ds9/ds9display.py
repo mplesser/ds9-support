@@ -20,9 +20,9 @@ class Ds9Display(Display):
     Azcam's interface to SAO's ds9 image display tool.
     """
 
-    def __init__(self, obj_id="display", obj_name="ds9"):
+    def __init__(self, obj_id="display", name="ds9"):
 
-        super().__init__(obj_id, obj_name)
+        super().__init__(obj_id, name)
 
         #: display Host, as a string hex code
         self.host = "0"
