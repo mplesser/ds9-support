@@ -8,6 +8,7 @@ setup(
     version="20.1",
     description="azcam extension for SAO's ds9 image display tool",
     long_description=long_description,
+    long_description_content_type="text/markdown",
     author="Michael Lesser",
     author_email="mlesser@arizona.edu",
     keywords="python parameters",
