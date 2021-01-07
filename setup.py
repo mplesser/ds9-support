@@ -15,5 +15,4 @@ setup(
     packages=find_packages(),
     zip_safe=False,
     install_requires=["azcam"],
-    include_package_data=False,
 )

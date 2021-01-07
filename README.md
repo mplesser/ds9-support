@@ -18,8 +18,14 @@ Usage Example:
     rois = azcam.api.display.get_rois(2, 'detector')  
     azcam.display.api.display(test.fits')
 
+## Installation
+
+`pip install azam-ds9`
+
+Or download from github: https://github.com/mplesser/azcam-ds9.git.
+
 ## Code Documentation
-https://mplesser.github.io/azcam-ds9/
+https://mplesser.github.io/azcam-ds9
 
 ## Notes
 It may be helpful to remove all associations of .fits files in the registry and then only
