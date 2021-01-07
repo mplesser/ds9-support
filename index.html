@@ -1,0 +1,1080 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <meta name="author" content="Michael Lesser">
+      
+      <link rel="shortcut icon" href="img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.6">
+    
+    
+      
+        <title>azcam-ds9 Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.6910b76c.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.196e0c26.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4051b5">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/custom.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="indigo" data-md-color-primary="indigo" data-md-color-accent="indigo">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ds9display-class" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="." title="azcam-ds9 Documentation" class="md-header-nav__button md-logo" aria-label="azcam-ds9 Documentation">
+      
+  <img src="img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            azcam-ds9 Documentation
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Ds9Display Class
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/mplesser/azcam-ds9.git/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    azcam-ds9 on GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="azcam-ds9 Documentation" class="md-nav__button md-logo" aria-label="azcam-ds9 Documentation">
+      
+  <img src="img/logo.png" alt="logo">
+
+    </a>
+    azcam-ds9 Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/mplesser/azcam-ds9.git/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    azcam-ds9 on GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Ds9Display Class
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="." class="md-nav__link md-nav__link--active">
+      Ds9Display Class
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display" class="md-nav__link">
+    Ds9Display
+  </a>
+  
+    <nav class="md-nav" aria-label="Ds9Display">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.delete_all_rois" class="md-nav__link">
+    delete_all_rois()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.display" class="md-nav__link">
+    display()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.draw_box" class="md-nav__link">
+    draw_box()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.exam" class="md-nav__link">
+    exam()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.find_displays" class="md-nav__link">
+    find_displays()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.get_box" class="md-nav__link">
+    get_box()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.get_data" class="md-nav__link">
+    get_data()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.get_last_point" class="md-nav__link">
+    get_last_point()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.get_number_rois" class="md-nav__link">
+    get_number_rois()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.get_regions" class="md-nav__link">
+    get_regions()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.get_roi_string" class="md-nav__link">
+    get_roi_string()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.get_rois" class="md-nav__link">
+    get_rois()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.get_stats" class="md-nav__link">
+    get_stats()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.initialize" class="md-nav__link">
+    initialize()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.read_rois" class="md-nav__link">
+    read_rois()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.save_fits" class="md-nav__link">
+    save_fits()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.save_image" class="md-nav__link">
+    save_image()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.set_cursor_mode" class="md-nav__link">
+    set_cursor_mode()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.set_display" class="md-nav__link">
+    set_display()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.show_stats" class="md-nav__link">
+    show_stats()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.start" class="md-nav__link">
+    start()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.xpaget" class="md-nav__link">
+    xpaget()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.xpaset" class="md-nav__link">
+    xpaset()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.zoom" class="md-nav__link">
+    zoom()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display" class="md-nav__link">
+    Ds9Display
+  </a>
+  
+    <nav class="md-nav" aria-label="Ds9Display">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.delete_all_rois" class="md-nav__link">
+    delete_all_rois()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.display" class="md-nav__link">
+    display()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.draw_box" class="md-nav__link">
+    draw_box()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.exam" class="md-nav__link">
+    exam()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.find_displays" class="md-nav__link">
+    find_displays()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.get_box" class="md-nav__link">
+    get_box()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.get_data" class="md-nav__link">
+    get_data()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.get_last_point" class="md-nav__link">
+    get_last_point()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.get_number_rois" class="md-nav__link">
+    get_number_rois()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.get_regions" class="md-nav__link">
+    get_regions()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.get_roi_string" class="md-nav__link">
+    get_roi_string()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.get_rois" class="md-nav__link">
+    get_rois()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.get_stats" class="md-nav__link">
+    get_stats()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.initialize" class="md-nav__link">
+    initialize()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.read_rois" class="md-nav__link">
+    read_rois()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.save_fits" class="md-nav__link">
+    save_fits()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.save_image" class="md-nav__link">
+    save_image()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.set_cursor_mode" class="md-nav__link">
+    set_cursor_mode()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.set_display" class="md-nav__link">
+    set_display()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.show_stats" class="md-nav__link">
+    show_stats()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.start" class="md-nav__link">
+    start()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.xpaget" class="md-nav__link">
+    xpaget()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.xpaset" class="md-nav__link">
+    xpaset()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azcam_ds9.ds9display.Ds9Display.zoom" class="md-nav__link">
+    zoom()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/mplesser/azcam-ds9.git/xxx/index.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="ds9display-class">Ds9Display Class</h1>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display">
+
+        <code>azcam_ds9.ds9display.Ds9Display</code>
+
+
+      </h2>
+<div class="doc doc-contents first">
+<p>Azcam's interface to SAO's ds9 image display tool.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.__init__">
+
+        <code class="highlight language-python">
+__init__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj_id</span><span class="o">=</span><span class="s1">'display'</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'ds9'</span><span class="p">)</span>        </code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      </h3>
+<div class="doc doc-contents ">
+
+    </div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.delete_all_rois">
+
+        <code class="highlight language-python">
+delete_all_rois<span class="p">(</span><span class="bp">self</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Delete all ROIs.</p>
+<p>:return None:</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.display">
+
+        <code class="highlight language-python">
+display<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">extension_number</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Display a file in ds9, making a copy so locking does not occur.
+If specified for an MEF file, only extension_number is displayed.</p>
+<p>:param image: a filename or an image object
+:param int extension_number: FITS extension number of image, -1 for all
+:return None:</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.draw_box">
+
+        <code class="highlight language-python">
+draw_box<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xy</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="mi">51</span><span class="p">,</span> <span class="mi">51</span><span class="p">],</span> <span class="n">angle</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Draw a box on the display.</p>
+<p>:param list xy: [x,y] coords of box to be drawn in image coordinates
+:param list size: [xwidth,ywidth] of box
+:param float angle: Angle of box.
+:return None:</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.exam">
+
+        <code class="highlight language-python">
+exam<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">box_size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Interactive: Get info around blinking cursor position.
+print() is allowed here as interactive only.</p>
+<p>:param int box_size: Size of examine box
+:param bool Loop: True for keep looping until <em>q</em> pressed
+:return list: [KeyPressed,X,Y] or [] in case or error.  KeyPressed is a character.</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.find_displays">
+
+        <code class="highlight language-python">
+find_displays<span class="p">(</span><span class="bp">self</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Returns a list of ds9 servers.
+The returned list is like: ['a00009c:50064', 'a00009c:59734'], which is host:port.
+If not servers are found, the returned list is empty.</p>
+<p>:return list: Display info from XPA</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.get_box">
+
+        <code class="highlight language-python">
+get_box<span class="p">(</span><span class="bp">self</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Get position of the first box in image coords.</p>
+<p>:return None:</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.get_data">
+
+        <code class="highlight language-python">
+get_data<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">roi_number</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Returns [Status,[pixel1,pixel2,...]] in display ROI.</p>
+<p>:param int roi_number: Number of ROI to get data
+:return list: [status,[pixel1,pixel2,...]] for ROI</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.get_last_point">
+
+        <code class="highlight language-python">
+get_last_point<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coordinate_mode</span><span class="o">=</span><span class="s1">'physical'</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Returns coordinates of the last point selected.</p>
+<p>:param str coordinate_mode: Coorinate mode, wcs or pysical
+:return list: Coords of point as [x,y] or [] if none</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.get_number_rois">
+
+        <code class="highlight language-python">
+get_number_rois<span class="p">(</span><span class="bp">self</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Returns the number of defined ROI's.</p>
+<p>:return int: Number of ROI's specified by ds9</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.get_regions">
+
+        <code class="highlight language-python">
+get_regions<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coordinate_type</span><span class="o">=</span><span class="s1">'image'</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Returns a list of regions, each a list of [shape,coords...].</p>
+<p>:param str coordinate_type: Type of coords as defined by the display server ['image','detector', 'amplifier']
+:param list: List of ROI info in ds9 format</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.get_roi_string">
+
+        <code class="highlight language-python">
+get_roi_string<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">roi_number</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">coordinate_type</span><span class="o">=</span><span class="s1">''</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Get an ROI descriptor formatted as a string with integer values.</p>
+<p>:param int roi_number: roi_number to return
+:param str coordinate_type:</p>
+<p>:return list: List of ROIs</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.get_rois">
+
+        <code class="highlight language-python">
+get_rois<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">roi_number</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">coordinate_type</span><span class="o">=</span><span class="s1">'default'</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Returns the Region Of Interest from the display tool and sets the internal ROI descriptors
+to the values read.
+If roi_number is not specified then a list of all defined ROI's is returned.</p>
+<p>:param int roi_number: roi number to be returned
+:param str CoorinateType: Type of coords as defined by the display server ['image','detector', 'amplifier']
+:return list: The list of ROIs</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.get_stats">
+
+        <code class="highlight language-python">
+get_stats<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">roi_number</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Returns statistics [status,mean,sdev] of an  ROI
+Also sets display.mean and display.sdev global variables.</p>
+<p>:param int roi_number: Number of ROI to get status
+:return list: [status,mean,sdev] for ROI</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.initialize">
+
+        <code class="highlight language-python">
+initialize<span class="p">(</span><span class="bp">self</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Initialize Ds9.</p>
+<p>:return None:</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.read_rois">
+
+        <code class="highlight language-python">
+read_rois<span class="p">(</span><span class="bp">self</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Read and internally save image, detector, and amplifier all Rois.</p>
+<p>:return None:</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.save_fits">
+
+        <code class="highlight language-python">
+save_fits<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">'display.fits'</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Save displayed image as a FITS file.</p>
+<p>:param str filename: filename of image to be saved.
+:return None:</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.save_image">
+
+        <code class="highlight language-python">
+save_image<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">'display.png'</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Save displayed image as a PNG snapshot.</p>
+<p>:param str filename: filename of image to be saved.
+:return None:</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.set_cursor_mode">
+
+        <code class="highlight language-python">
+set_cursor_mode<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'point'</span><span class="p">,</span> <span class="n">clear_rois</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Set the display cursor mode.</p>
+<p>:param str mode: Cursor mode ("point", "crosshair")
+:param bool clear_rois: True to clear all ROIs</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.set_display">
+
+        <code class="highlight language-python">
+set_display<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">display_number</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Set the current ds9 display by number.</p>
+<p>:param int display_number: Number for display to be used (0-&gt;N)
+:return None:</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.show_stats">
+
+        <code class="highlight language-python">
+show_stats<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">roi_number</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Interactive: Print stats from an ROI in a real-time loop until <em>q</em> is pressed.
+print() is allowed here as interactive only.</p>
+<p>:param int roi_number: Number of ROI to get status
+:return list: [status,mean,sdev] for ROI</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.start">
+
+        <code class="highlight language-python">
+start<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flag</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Starts a display process.</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.xpaget">
+
+        <code class="highlight language-python">
+xpaget<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Issue xpaget command for ds9.
+Returns data as a list of space deliminated items.</p>
+<p>:param str command: command string for xpaget command
+:return: Return value</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.xpaset">
+
+        <code class="highlight language-python">
+xpaset<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Issue xpaset command for ds9.</p>
+<p>:param str command: command string for xpaset command
+:return: Return value</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="azcam_ds9.ds9display.Ds9Display.zoom">
+
+        <code class="highlight language-python">
+zoom<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>        </code>
+
+
+      </h3>
+<div class="doc doc-contents ">
+<p>Set display zoom factor relative to current zoom.</p>
+<p>:param int Scale: Scale factor for zoom, 0 "to fit"
+:return None:</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: 2021-01-06
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="assets/javascripts/vendor.fd16492e.min.js"></script>
+      <script src="assets/javascripts/bundle.7836ba4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: ".",
+          features: navigation.sections,
+          search: Object.assign({
+            worker: "assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
