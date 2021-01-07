@@ -4,23 +4,7 @@
 
 *azcam-ds9* is an *azcam extension* which supports SAO's ds9 display tool running under Windows. See https://sites.google.com/cfa.harvard.edu/saoimageds9.
 
-## Installation
-
-The support files described below may be found in the *support* subfolder. 
-
-To display images on the ds9 image display tool from within AzCam, the xpans.exe program needs to be running See http://nssm.cc for details about how to install `xpans.exe` as a Windows service.
-
-Use `install_xpans_nssm.bat` to install xpans as a service and `uninstall_xpans_nssm.bat` to uninstall the service.  You should expect to first edit `install_xpans_nssm.bat` to set the appropriate file paths. Note using `nssm.exe` modifies the Windows Registry.
-
-To associate ds9 with FITS or MEF images:
-
-- `set_ds9_default_fits.bat`
-- `set_ds9_default_mef.bat`
-
-To open a FITS or MEF file with ds9:
-
-- `open_fits.ds9.bat`
-- `open_mef.ds9.bat`
+See https://mplesser.github.io/azcam-ds9-winsupport for support code which may be helpful when displaying images on Windows computers
 
 ## Display Class
 This class defines Azcam's image display interface to SAO's ds9 image display. 
