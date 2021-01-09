@@ -20,7 +20,7 @@ Usage Example:
 
 ## Installation
 
-`pip install azam-ds9`
+`pip install azcam-ds9`
 
 Or download from github: https://github.com/mplesser/azcam-ds9.git.
 
