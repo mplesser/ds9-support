@@ -24,16 +24,16 @@ class Ds9Display(Display):
 
         super().__init__(obj_id, name)
 
-        #: display Host, as a string hex code
+        # display Host, as a string hex code
         self.host = "0"
-        #: display Port, as a string decimal code
+        # display Port, as a string decimal code
         self.port = "0"
 
-        #: image size for binary images
+        # image size for binary images
         self.size_x = 0
         self.size_y = 0
 
-        #: region of interests [first_col,last_col,first_row,last_row]
+        # region of interests [first_col,last_col,first_row,last_row]
         # image coords     - entire image, binned units (starts at each amps reference)
         self.image_roi = []
         self.detector_roi = []  # detector coords  - single detector, unbinned units
@@ -41,12 +41,12 @@ class Ds9Display(Display):
         self.return_integers = True  # true to return all coords as closest integers
         self.coordinate_type = "detector"
 
-        #: mean of current display ROI
+        # mean of current display ROI
         self.mean = 0.0
-        #: standard deviation of current display ROI
+        # standard deviation of current display ROI
         self.sdev = 0.0
 
-        #: get names based on OS type
+        # get names based on OS type
         self.root = "c:\\ds9\\"
         self.xpaproc = None
 
