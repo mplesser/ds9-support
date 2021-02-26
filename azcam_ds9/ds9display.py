@@ -9,8 +9,9 @@ import tempfile
 import time
 from typing import List
 
-import azcam
 import numpy
+
+import azcam
 from azcam.display import Display
 from azcam.fits import pyfits
 
@@ -121,6 +122,7 @@ class Ds9Display(Display):
             [self.xpaaccess_app, "-v", "ds9"],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
+            shell=False,
         )
         output, errors = p.communicate()
         output = output.decode("utf-8")
@@ -272,7 +274,7 @@ class Ds9Display(Display):
             else:
                 return []
 
-            datads9 = self.xpaget(cmd)[0]
+            datads9 = self.xpaget(cmd)
             datads9 = datads9.lstrip("detector;")
             datads9 = datads9.lstrip("image;")
             datads9 = datads9.lstrip("amplifier;")
@@ -291,7 +293,8 @@ class Ds9Display(Display):
             else:
                 return []
 
-        except Exception:
+        except Exception as e:
+            azcam.log(e)
             return []
 
         return data
@@ -527,7 +530,7 @@ class Ds9Display(Display):
         # test, could be slow but seems to work nicely
         self.set_display()
 
-        ds9 = self.host + ":" + self.port + " "
+        ds9 = self.host + ":" + self.port
 
         if type(image) == str:
             filename1 = azcam.utils.make_image_filename(image)
@@ -545,42 +548,36 @@ class Ds9Display(Display):
             ne = max(0, len(im) - 1)
             im.close()
             if ne in [0, 1]:
-                s = self.xpaset_app + " " + ds9 + "fits iraf < " + filename
+                # s = self.xpaset_app + " " + ds9 + "fits iraf < " + filename
+                s = [self.xpaset_app, ds9, f"fits iraf < {filename}"]
             else:
                 if extension_number == -1:
-                    s = self.xpaset_app + " " + ds9 + "fits mosaicimage iraf < " + filename
+                    # s = self.xpaset_app + " " + ds9 + "fits mosaicimage iraf < " + filename
+                    s = [self.xpaset_app, ds9, f"fits mosaicimage iraf < {filename}"]
                 else:
-                    s = (
-                        self.xpaset_app
-                        + " "
-                        + ds9
-                        + "fits "
-                        + " ["
-                        + str(extension_number)
-                        + "] "
-                        + "< "
-                        + filename
-                    )
+                    s = [self.xpaset_app, ds9, "fits", f"[{extension_number}] < {filename}"]
         elif ext == ".bin":
             NumCols, NumRows = self.size_x, self.size_y
-            s = (
-                self.xpaset_app
-                + " "
-                + ds9
-                + "array [xdim="
-                + str(NumCols)
-                + ",ydim="
-                + str(NumRows)
-                + ",bitpix=-16] < "
-                + filename
-            )
-
+            s = [
+                self.xpaset_app,
+                ds9,
+                "array",
+                f"[xdim={NumCols},ydim={NumRows},bitpix=-16] < {filename}",
+            ]
         else:
             azcam.AzcamWarning("invalid image extension")
             return
 
         # execute XPA command to display file
-        os.popen(s).readlines()  # grab output to avoid printed error message, always []
+        s = " ".join(s)
+        p = subprocess.Popen(
+            s,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            shell=True,
+        )
+        stdout, stderr = p.communicate()
+        stdout = stdout.decode("utf-8")
 
         return
 
@@ -768,19 +765,24 @@ class Ds9Display(Display):
         ds9 = self.host + ":" + self.port + " "
 
         cmd = self.xpaget_app + " " + ds9 + command
-        output = os.popen(cmd).readlines()
 
-        if len(output) == 1:
-            output = output[0].strip().split(" ")
+        # execute XPA command
+        p = subprocess.Popen(
+            cmd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            shell=True,
+        )
+        stdout, stderr = p.communicate()
+        stdout = stdout.decode("utf-8")
 
-        return output
+        return stdout
 
-    def xpaset(self, command):
+    def xpaset(self, command) -> None:
         """
         Issue xpaset command for ds9.
 
         :param str command: command string for xpaset command
-        :return: Return value
 
         """
 
@@ -790,8 +792,13 @@ class Ds9Display(Display):
         cmd = cmd.replace("\\\\", "/")
         cmd = cmd.replace("/", "\\")
 
-        reply = os.popen(cmd)
-        # reply=subprocess.Popen(cmd,cwd=folder)
-        # reply=subprocess.Popen(cmd)
+        # execute XPA command
+        p = subprocess.Popen(
+            cmd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            shell=True,
+        )
+        stdout, stderr = p.communicate()
 
-        return reply
+        return
