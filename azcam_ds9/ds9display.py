@@ -555,7 +555,12 @@ class Ds9Display(Display):
                     # s = self.xpaset_app + " " + ds9 + "fits mosaicimage iraf < " + filename
                     s = [self.xpaset_app, ds9, f"fits mosaicimage iraf < {filename}"]
                 else:
-                    s = [self.xpaset_app, ds9, "fits", f"[{extension_number}] < {filename}"]
+                    s = [
+                        self.xpaset_app,
+                        ds9,
+                        "fits",
+                        f"[{extension_number}] < {filename}",
+                    ]
         elif ext == ".bin":
             NumCols, NumRows = self.size_x, self.size_y
             s = [
