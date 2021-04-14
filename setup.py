@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="azcam-ds9",
-    version="21.2.0",
+    version="21.2.1",
     description="azcam extension for SAO's ds9 image display tool",
     long_description=long_description,
     long_description_content_type="text/markdown",

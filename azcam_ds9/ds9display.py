@@ -87,6 +87,8 @@ class Ds9Display(Display):
 
         self.set_display(self.default_display)
 
+        self.initialized = 1
+
         return
 
     def start(self, flag=0):
@@ -169,6 +171,81 @@ class Ds9Display(Display):
         return
 
     # *************************************************************************************************
+    #   display image
+    # *************************************************************************************************
+    def display(self, image, extension_number=-1):
+        """
+        Display a file in ds9, making a copy so locking does not occur.
+        If specified for an MEF file, only extension_number is displayed.
+
+        :param image: a filename or an image object
+        :param int extension_number: FITS extension number of image, -1 for all
+        :return None:
+        """
+
+        self.initialize()
+
+        # test, could be slow but seems to work nicely
+        self.set_display()
+
+        ds9 = self.host + ":" + self.port
+
+        if type(image) == str:
+            filename1 = azcam.utils.make_image_filename(image)
+        else:
+            filename1 = image.filename
+
+        ext = os.path.splitext(filename1)[-1]
+
+        # copy image file so it is not locked by ds9
+        filename = os.path.join(tempfile.gettempdir(), "tempdisplayfile" + ext)
+        shutil.copyfile(filename1, filename)
+
+        if ext == ".fits":
+            im = pyfits.open(filename)
+            ne = max(0, len(im) - 1)
+            im.close()
+            if ne in [0, 1]:
+                # s = self.xpaset_app + " " + ds9 + "fits iraf < " + filename
+                s = [self.xpaset_app, ds9, f"fits iraf < {filename}"]
+            else:
+                if extension_number == -1:
+                    # s = self.xpaset_app + " " + ds9 + "fits mosaicimage iraf < " + filename
+                    s = [self.xpaset_app, ds9, f"fits mosaicimage iraf < {filename}"]
+                else:
+                    s = [
+                        self.xpaset_app,
+                        ds9,
+                        "fits",
+                        f"[{extension_number}] < {filename}",
+                    ]
+        elif ext == ".bin":
+            NumCols, NumRows = self.size_x, self.size_y
+            s = [
+                self.xpaset_app,
+                ds9,
+                "array",
+                f"[xdim={NumCols},ydim={NumRows},bitpix=-16] < {filename}",
+            ]
+        else:
+            azcam.AzcamWarning("invalid image extension")
+            return
+
+        # execute XPA command to display file
+        s = " ".join(s)
+        p = subprocess.Popen(
+            s,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            shell=True,
+        )
+        stdout, stderr = p.communicate()
+        stdout = stdout.decode("utf-8")
+
+        return
+
+    # *************************************************************************************************
+
     #   ROI's
     # *************************************************************************************************
     def get_rois(self, roi_number=-1, coordinate_type="default"):
@@ -511,78 +588,6 @@ class Ds9Display(Display):
             self.xpaset(cmd)
         except Exception:
             return
-
-        return
-
-    # *************************************************************************************************
-    #   display image
-    # *************************************************************************************************
-    def display(self, image, extension_number=-1):
-        """
-        Display a file in ds9, making a copy so locking does not occur.
-        If specified for an MEF file, only extension_number is displayed.
-
-        :param image: a filename or an image object
-        :param int extension_number: FITS extension number of image, -1 for all
-        :return None:
-        """
-
-        # test, could be slow but seems to work nicely
-        self.set_display()
-
-        ds9 = self.host + ":" + self.port
-
-        if type(image) == str:
-            filename1 = azcam.utils.make_image_filename(image)
-        else:
-            filename1 = image.filename
-
-        ext = os.path.splitext(filename1)[-1]
-
-        # copy image file so it is not locked by ds9
-        filename = os.path.join(tempfile.gettempdir(), "tempdisplayfile" + ext)
-        shutil.copyfile(filename1, filename)
-
-        if ext == ".fits":
-            im = pyfits.open(filename)
-            ne = max(0, len(im) - 1)
-            im.close()
-            if ne in [0, 1]:
-                # s = self.xpaset_app + " " + ds9 + "fits iraf < " + filename
-                s = [self.xpaset_app, ds9, f"fits iraf < {filename}"]
-            else:
-                if extension_number == -1:
-                    # s = self.xpaset_app + " " + ds9 + "fits mosaicimage iraf < " + filename
-                    s = [self.xpaset_app, ds9, f"fits mosaicimage iraf < {filename}"]
-                else:
-                    s = [
-                        self.xpaset_app,
-                        ds9,
-                        "fits",
-                        f"[{extension_number}] < {filename}",
-                    ]
-        elif ext == ".bin":
-            NumCols, NumRows = self.size_x, self.size_y
-            s = [
-                self.xpaset_app,
-                ds9,
-                "array",
-                f"[xdim={NumCols},ydim={NumRows},bitpix=-16] < {filename}",
-            ]
-        else:
-            azcam.AzcamWarning("invalid image extension")
-            return
-
-        # execute XPA command to display file
-        s = " ".join(s)
-        p = subprocess.Popen(
-            s,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            shell=True,
-        )
-        stdout, stderr = p.communicate()
-        stdout = stdout.decode("utf-8")
 
         return
 
