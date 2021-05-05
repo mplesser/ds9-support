@@ -710,11 +710,14 @@ class Ds9Display(Display):
             )  # may not be right
             datads9 = self.xpaget(cmd)
             data = []
+            datads9 = datads9.split("\n")
             for d in datads9:
-                d = d.strip()
+                if len(d)==0:
+                    continue
                 data.append(float(d))
             return data
-        except Exception:
+        except Exception as e:
+            azcam.log(f"ds9 error: {e}")
             return []
 
     # *************************************************************************************************
