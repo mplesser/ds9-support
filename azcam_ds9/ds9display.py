@@ -712,7 +712,7 @@ class Ds9Display(Display):
             data = []
             datads9 = datads9.split("\n")
             for d in datads9:
-                if len(d)==0:
+                if len(d) == 0:
                     continue
                 data.append(float(d))
             return data
