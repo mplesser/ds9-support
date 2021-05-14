@@ -99,7 +99,9 @@ class Ds9Display(Display):
         self.initialize()
 
         cmd = [self.ds9_app]
-        p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=False)
+        p = subprocess.Popen(
+            cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=False
+        )
 
         return
 
@@ -305,7 +307,9 @@ class Ds9Display(Display):
         if coordinate_type == "":
             coordinate_type = self.coordinate_type
 
-        Rois = self.get_regions(coordinate_type)  # this is a list of roi's, each [shape, roi]
+        Rois = self.get_regions(
+            coordinate_type
+        )  # this is a list of roi's, each [shape, roi]
         if not Rois:
             return []
 
