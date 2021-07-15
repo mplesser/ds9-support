@@ -12,8 +12,8 @@ from typing import List
 import numpy
 
 import azcam
-from azcam.display import Display
-from azcam.fits import pyfits
+from azcam.tools.display import Display
+from astropy.io import fits as pyfits
 
 
 class Ds9Display(Display):
